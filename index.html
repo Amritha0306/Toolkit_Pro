@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ToolKit Pro – Built for Digital Heroes</title>
+  <meta name="description" content="A suite of free online tools: GST Calculator, EMI Calculator, Image Compressor, QR Code Generator, Unit Converter, Bill Splitter, Age Calculator, Word Counter, Color Palette Generator."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">⚡ ToolKit Pro</div>
+      <div class="header-right">
+        <div class="author-info">
+          <span class="author-name">Amrit</span>
+          <a href="mailto:amrit@example.com" class="author-email">amrit@example.com</a>
+        </div>
+        <a href="https://digitalheroesco.com" target="_blank" class="hero-btn" id="digital-heroes-btn">Built for Digital Heroes</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1 class="hero-title">Your Ultimate<br/><span class="gradient-text">Online Toolkit</span></h1>
+    <p class="hero-sub">9 powerful tools — all free, all instant.</p>
+    <div class="tool-nav">
+      <button class="nav-pill active" onclick="showTool('gst')">GST</button>
+      <button class="nav-pill" onclick="showTool('emi')">EMI / Loan</button>
+      <button class="nav-pill" onclick="showTool('image')">Image Compressor</button>
+      <button class="nav-pill" onclick="showTool('qr')">QR Code</button>
+      <button class="nav-pill" onclick="showTool('converter')">Converter</button>
+      <button class="nav-pill" onclick="showTool('bill')">Bill Splitter</button>
+      <button class="nav-pill" onclick="showTool('age')">Age Calculator</button>
+      <button class="nav-pill" onclick="showTool('word')">Word Counter</button>
+      <button class="nav-pill" onclick="showTool('palette')">Color Palette</button>
+    </div>
+  </section>
+
+  <!-- TOOL PANELS -->
+  <main class="tool-area">
+
+    <!-- GST CALCULATOR -->
+    <div id="tool-gst" class="tool-panel active">
+      <div class="tool-card">
+        <h2 class="tool-title">🧾 GST Calculator</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Original Amount (₹)</label>
+            <input type="number" id="gst-amount" placeholder="e.g. 1000" min="0"/>
+          </div>
+          <div class="form-group">
+            <label>GST Rate (%)</label>
+            <select id="gst-rate">
+              <option value="5">5%</option>
+              <option value="12">12%</option>
+              <option value="18" selected>18%</option>
+              <option value="28">28%</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+          <div class="form-group" id="gst-custom-wrapper" style="display:none">
+            <label>Custom Rate (%)</label>
+            <input type="number" id="gst-custom" placeholder="Enter rate"/>
+          </div>
+          <div class="form-group">
+            <label>Calculation Type</label>
+            <select id="gst-type">
+              <option value="exclusive">Add GST (Exclusive)</option>
+              <option value="inclusive">Remove GST (Inclusive)</option>
+            </select>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcGST()">Calculate GST</button>
+        <div id="gst-result" class="result-box hidden"></div>
+      </div>
+    </div>
+
+    <!-- EMI CALCULATOR -->
+    <div id="tool-emi" class="tool-panel">
+      <div class="tool-card">
+        <h2 class="tool-title">🏦 EMI / Loan Calculator</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Loan Amount (₹)</label>
+            <input type="number" id="emi-principal" placeholder="e.g. 500000" min="0"/>
+          </div>
+          <div class="form-group">
+            <label>Annual Interest Rate (%)</label>
+            <input type="number" id="emi-rate" placeholder="e.g. 8.5" step="0.1" min="0"/>
+          </div>
+          <div class="form-group">
+            <label>Loan Tenure (Months)</label>
+            <input type="number" id="emi-months" placeholder="e.g. 60" min="1"/>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcEMI()">Calculate EMI</button>
+        <div id="emi-result" class="result-box hidden"></div>
+      </div>
+    </div>
+
+    <!-- IMAGE COMPRESSOR -->
+    <div id="tool-image" class="tool-panel">
+      <div class="tool-card">
+        <h2 class="tool-title">🖼️ Image Compressor</h2>
+        <div class="drop-zone" id="img-drop" onclick="document.getElementById('img-input').click()">
+          <p>📂 Click or drag & drop an image here</p>
+          <span class="drop-hint">Supports JPG, PNG, WebP</span>
+        </div>
+        <input type="file" id="img-input" accept="image/*" style="display:none" onchange="loadImage(event)"/>
+        <div class="form-group" style="margin-top:1rem">
+          <label>Quality: <span id="quality-val">75</span>%</label>
+          <input type="range" id="img-quality" min="10" max="100" value="75" oninput="document.getElementById('quality-val').textContent=this.value"/>
+        </div>
+        <button class="calc-btn" onclick="compressImage()">Compress Image</button>
+        <div id="img-result" class="result-box hidden">
+          <div class="img-compare">
+            <div><p>Original</p><img id="img-original" /><p id="img-orig-size"></p></div>
+            <div><p>Compressed</p><img id="img-compressed" /><p id="img-comp-size"></p></div>
+          </div>
+          <button class="download-btn" onclick="downloadImage()" id="img-download">⬇ Download Compressed</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- QR CODE GENERATOR -->
+    <div id="tool-qr" class="tool-panel">
+      <div class="tool-card">
+        <h2 class="tool-title">📱 QR Code Generator</h2>
+        <div class="form-group">
+          <label>Enter text or URL</label>
+          <input type="text" id="qr-input" placeholder="https://example.com or any text"/>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Foreground Color</label>
+            <input type="color" id="qr-fg" value="#0f172a"/>
+          </div>
+          <div class="form-group">
+            <label>Background Color</label>
+            <input type="color" id="qr-bg" value="#ffffff"/>
+          </div>
+          <div class="form-group">
+            <label>Size</label>
+            <select id="qr-size">
+              <option value="150">Small (150px)</option>
+              <option value="200" selected>Medium (200px)</option>
+              <option value="300">Large (300px)</option>
+            </select>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="generateQR()">Generate QR Code</button>
+        <div id="qr-result" class="result-box hidden">
+          <div id="qr-container" style="display:flex;justify-content:center;margin:1rem 0"></div>
+          <button class="download-btn" onclick="downloadQR()">⬇ Download QR Code</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIT / CURRENCY CONVERTER -->
+    <div id="tool-converter" class="tool-panel">
+      <div class="tool-card">
+        <h2 class="tool-title">🔄 Unit / Currency Converter</h2>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="conv-category" onchange="updateUnits()">
+            <option value="length">Length</option>
+            <option value="weight">Weight</option>
+            <option value="temperature">Temperature</option>
+            <option value="area">Area</option>
+            <option value="volume">Volume</option>
+            <option value="speed">Speed</option>
+            <option value="currency">Currency (INR base)</option>
+          </select>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>From</label>
+            <select id="conv-from"></select>
+          </div>
+          <div class="form-group">
+            <label>To</label>
+            <select id="conv-to"></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Value</label>
+          <input type="number" id="conv-value" placeholder="Enter value"/>
+        </div>
+        <button class="calc-btn" onclick="convert()">Convert</button>
+        <div id="conv-result" class="result-box hidden"></div>
+      </div>
+    </div>
+
+    <!-- BILL SPLITTER -->
+    <div id="tool-bill" class="tool-panel">
+      <div class="tool-card">
+        <h2 class="tool-title">🍽️ Split the Bill Calculator</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Total Bill Amount (₹)</label>
+            <input type="number" id="bill-total" placeholder="e.g. 2500" min="0"/>
+          </div>
+          <div class="form-group">
+            <label>Number of People</label>
+            <input type="number" id="bill-people" placeholder="e.g. 4" min="1"/>
+          </div>
+          <div class="form-group">
+            <label>Tip (%)</label>
+            <input type="number" id="bill-tip" placeholder="e.g. 10" min="0" value="0"/>
+          </div>
+          <div class="form-group">
+            <label>Discount (%)</label>
+            <input type="number" id="bill-discount" placeholder="e.g. 5" min="0" value="0"/>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcBill()">Split Bill</button>
+        <div id="bill-result" class="result-box hidden"></div>
+      </div>
+    </div>
+
+    <!-- AGE CALCULATOR -->
+    <div id="tool-age" class="tool-panel">
+      <div class="tool-card">
+        <h2 class="tool-title">🎂 Age Calculator</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" id="age-dob"/>
+          </div>
+          <div class="form-group">
+            <label>Calculate Age As Of</label>
+            <input type="date" id="age-today"/>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcAge()">Calculate Age</button>
+        <div id="age-result" class="result-box hidden"></div>
+      </div>
+    </div>
+
+    <!-- WORD & CHARACTER COUNTER -->
+    <div id="tool-word" class="tool-panel">
+      <div class="tool-card">
+        <h2 class="tool-title">📝 Word & Character Counter</h2>
+        <div class="form-group">
+          <label>Paste or type your text below</label>
+          <textarea id="word-input" rows="8" placeholder="Start typing or paste text here..." oninput="countWords()"></textarea>
+        </div>
+        <div id="word-stats" class="stats-grid">
+          <div class="stat-box"><span id="wc-words">0</span><label>Words</label></div>
+          <div class="stat-box"><span id="wc-chars">0</span><label>Characters</label></div>
+          <div class="stat-box"><span id="wc-chars-no">0</span><label>Chars (no spaces)</label></div>
+          <div class="stat-box"><span id="wc-sentences">0</span><label>Sentences</label></div>
+          <div class="stat-box"><span id="wc-paras">0</span><label>Paragraphs</label></div>
+          <div class="stat-box"><span id="wc-read">0 min</span><label>Read Time</label></div>
+        </div>
+        <button class="calc-btn" onclick="document.getElementById('word-input').value='';countWords()">Clear Text</button>
+      </div>
+    </div>
+
+    <!-- COLOR PALETTE GENERATOR -->
+    <div id="tool-palette" class="tool-panel">
+      <div class="tool-card">
+        <h2 class="tool-title">🎨 Color Palette Generator</h2>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Base Color</label>
+            <input type="color" id="palette-base" value="#6366f1"/>
+          </div>
+          <div class="form-group">
+            <label>Palette Type</label>
+            <select id="palette-type">
+              <option value="analogous">Analogous</option>
+              <option value="complementary">Complementary</option>
+              <option value="triadic">Triadic</option>
+              <option value="tetradic">Tetradic</option>
+              <option value="shades">Shades</option>
+            </select>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="generatePalette()">Generate Palette</button>
+        <div id="palette-result" class="hidden">
+          <div id="palette-swatches" class="palette-row"></div>
+          <p class="palette-hint">Click any swatch to copy hex code</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-author">
+        <strong>Amrit</strong> &nbsp;|&nbsp; <a href="mailto:amrit@example.com">amrit@example.com</a>
+      </div>
+      <a href="https://digitalheroesco.com" target="_blank" class="hero-btn small">Built for Digital Heroes</a>
+      <p class="footer-copy">© 2026 ToolKit Pro. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- QR LIB -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
