@@ -3,15 +3,14 @@
 A comprehensive, responsive, single-page web toolkit hosting 9 powerful tools designed with modern aesthetics (glassmorphism, interactive animations, and dark mode). Built entirely using vanilla HTML5, CSS3, and JavaScript.
 
 ## 🔗 Live Demo & Links
-- **Live Deployment URL:** *[Insert your live Vercel URL here]*
-- **GitHub Repository:** *[Insert your public GitHub repository URL here]*
+- **Live Deployment URL:toolkit-pro-gamma.vercel.app
 
 ---
 
 ## 🛠️ Mandatory Requirements Checklist
 - [x] **Fully Functional Tools:** Every single tool works client-side and produces correct outputs.
 - [x] **"Built for Digital Heroes" Button:** Prominently featured in the header and footer, matching the exact spelling and casing, linking directly to [https://digitalheroesco.com](https://digitalheroesco.com).
-- [x] **Contact Visibility:** Author's full name (**Amritha**) and reachable email (**amrit@example.com**) are clearly displayed on the page.
+- [x] **Contact Visibility:** Author's full name (**Amritha**) and reachable email (**amritharameshkanchan317@gmail.com**) are clearly displayed on the page.
 - [x] **Vercel Live URL:** Configured with `vercel.json` for seamless deployment.
 - [x] **Public GitHub Repo Link:** Clean commit history.
 - [x] **Portfolio Integration:** Structured metadata and layout ready to be featured in your personal portfolio.
