@@ -2,12 +2,28 @@
    TOOL SWITCHING
 ========================================= */
 function showTool(id) {
+  // Hide home grid
+  document.getElementById('tool-home').style.display = 'none';
+  // Hide all tool panels
   document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
-  document.getElementById('tool-' + id).classList.add('active');
-  const pills = document.querySelectorAll('.nav-pill');
-  const ids = ['gst','emi','image','qr','converter','bill','age','word','palette'];
-  pills[ids.indexOf(id)].classList.add('active');
+  // Show selected tool
+  const panel = document.getElementById('tool-' + id);
+  panel.classList.add('active');
+  // Inject back button if not already present
+  if (!panel.querySelector('.back-btn')) {
+    const btn = document.createElement('button');
+    btn.className = 'back-btn';
+    btn.innerHTML = '&#8592; Back to Tools';
+    btn.onclick = goHome;
+    panel.insertBefore(btn, panel.firstChild);
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goHome() {
+  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tool-home').style.display = '';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* =========================================
@@ -204,65 +220,51 @@ function downloadQR() {
 }
 
 /* =========================================
-   UNIT / CURRENCY CONVERTER
+   CURRENCY CONVERTER (INR-base rates)
 ========================================= */
-const units = {
-  length: { meter:1, kilometer:0.001, centimeter:100, millimeter:1000, inch:39.3701, foot:3.28084, yard:1.09361, mile:0.000621371 },
-  weight: { kilogram:1, gram:1000, milligram:1000000, pound:2.20462, ounce:35.274, ton:0.001 },
-  temperature: { celsius:'special', fahrenheit:'special', kelvin:'special' },
-  area: { 'sq meter':1, 'sq kilometer':0.000001, 'sq centimeter':10000, 'sq foot':10.7639, 'sq inch':1550, acre:0.000247105, hectare:0.0001 },
-  volume: { liter:1, milliliter:1000, 'cubic meter':0.001, gallon:0.264172, quart:1.05669, pint:2.11338 },
-  speed: { 'm/s':1, 'km/h':3.6, 'mph':2.23694, knot:1.94384 },
-  currency: { INR:1, USD:0.012, EUR:0.011, GBP:0.0094, JPY:1.78, AED:0.044, SGD:0.016, CAD:0.016, AUD:0.018 }
+const currencyRates = {
+  INR:  1,
+  USD:  0.01199,
+  EUR:  0.01103,
+  GBP:  0.00944,
+  JPY:  1.782,
+  AED:  0.04404,
+  SGD:  0.01612,
+  CAD:  0.01643,
+  AUD:  0.01845,
+  CHF:  0.01079,
+  CNY:  0.08674,
+  SAR:  0.04497,
+  MYR:  0.05614
 };
 
-function updateUnits() {
-  const cat = document.getElementById('conv-category').value;
-  const keys = Object.keys(units[cat]);
-  const fromEl = document.getElementById('conv-from');
-  const toEl = document.getElementById('conv-to');
-  fromEl.innerHTML = keys.map(k => `<option value="${k}">${k}</option>`).join('');
-  toEl.innerHTML = keys.map(k => `<option value="${k}">${k}</option>`).join('');
-  if (keys.length > 1) toEl.selectedIndex = 1;
-  document.getElementById('conv-result').classList.add('hidden');
-}
+const currencyNames = {
+  INR:'Indian Rupee', USD:'US Dollar', EUR:'Euro', GBP:'British Pound',
+  JPY:'Japanese Yen', AED:'UAE Dirham', SGD:'Singapore Dollar',
+  CAD:'Canadian Dollar', AUD:'Australian Dollar', CHF:'Swiss Franc',
+  CNY:'Chinese Yuan', SAR:'Saudi Riyal', MYR:'Malaysian Ringgit'
+};
 
 function convert() {
-  const cat = document.getElementById('conv-category').value;
   const from = document.getElementById('conv-from').value;
-  const to = document.getElementById('conv-to').value;
-  const val = parseFloat(document.getElementById('conv-value').value);
+  const to   = document.getElementById('conv-to').value;
+  const val  = parseFloat(document.getElementById('conv-value').value);
 
-  if (isNaN(val)) return showError('conv-result', 'Please enter a valid value.');
+  if (isNaN(val) || val < 0) return showError('conv-result', 'Please enter a valid amount.');
 
-  let result;
-
-  if (cat === 'temperature') {
-    result = convertTemp(val, from, to);
-  } else {
-    const inBase = val / units[cat][from];
-    result = inBase * units[cat][to];
-  }
+  // Convert: amount → INR → target
+  const inINR = val / currencyRates[from];
+  const result = inINR * currencyRates[to];
+  const rate   = currencyRates[to] / currencyRates[from];
 
   const el = document.getElementById('conv-result');
   el.classList.remove('hidden');
   el.innerHTML = `
-    <div class="result-row"><span class="result-label">${val} ${from}</span><span class="result-highlight">${result.toFixed(6).replace(/\.?0+$/, '')} ${to}</span></div>
+    <div class="result-row"><span class="result-label">${val} ${from} (${currencyNames[from]})</span><span class="result-highlight">${result.toFixed(4)} ${to}</span></div>
+    <div class="result-row"><span class="result-label">Exchange Rate</span><span class="result-value">1 ${from} = ${rate.toFixed(6)} ${to}</span></div>
+    <div class="result-row"><span class="result-label">Inverse Rate</span><span class="result-value">1 ${to} = ${(1/rate).toFixed(6)} ${from}</span></div>
   `;
 }
-
-function convertTemp(val, from, to) {
-  let celsius;
-  if (from === 'celsius') celsius = val;
-  else if (from === 'fahrenheit') celsius = (val - 32) * 5/9;
-  else celsius = val - 273.15;
-
-  if (to === 'celsius') return celsius;
-  if (to === 'fahrenheit') return celsius * 9/5 + 32;
-  return celsius + 273.15;
-}
-
-updateUnits();
 
 /* =========================================
    BILL SPLITTER

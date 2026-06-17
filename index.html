@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ToolKit Pro – Built for Digital Heroes</title>
-  <meta name="description" content="A suite of free online tools: GST Calculator, EMI Calculator, Image Compressor, QR Code Generator, Unit Converter, Bill Splitter, Age Calculator, Word Counter, Color Palette Generator."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
+  <meta name="description"
+    content="A suite of free online tools: GST Calculator, EMI Calculator, Image Compressor, QR Code Generator, Unit Converter, Bill Splitter, Age Calculator, Word Counter, Color Palette Generator." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <!-- HEADER -->
   <header class="site-header">
@@ -16,42 +20,83 @@
       <div class="logo">⚡ ToolKit Pro</div>
       <div class="header-right">
         <div class="author-info">
-          <span class="author-name">Amrit</span>
-          <a href="mailto:amrit@example.com" class="author-email">amrit@example.com</a>
+          <span class="author-name">Amritha</span>
+          <a href="mailto:amritharameshkanchan317@gmail.com" class="author-email">amritharameshkanchan317@gmail.com</a>
         </div>
-        <a href="https://digitalheroesco.com" target="_blank" class="hero-btn" id="digital-heroes-btn">Built for Digital Heroes</a>
+        <a href="https://digitalheroesco.com" target="_blank" class="hero-btn" id="digital-heroes-btn">Built for Digital
+          Heroes</a>
       </div>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <h1 class="hero-title">Your Ultimate<br/><span class="gradient-text">Online Toolkit</span></h1>
-    <p class="hero-sub">9 powerful tools — all free, all instant.</p>
-    <div class="tool-nav">
-      <button class="nav-pill active" onclick="showTool('gst')">GST</button>
-      <button class="nav-pill" onclick="showTool('emi')">EMI / Loan</button>
-      <button class="nav-pill" onclick="showTool('image')">Image Compressor</button>
-      <button class="nav-pill" onclick="showTool('qr')">QR Code</button>
-      <button class="nav-pill" onclick="showTool('converter')">Converter</button>
-      <button class="nav-pill" onclick="showTool('bill')">Bill Splitter</button>
-      <button class="nav-pill" onclick="showTool('age')">Age Calculator</button>
-      <button class="nav-pill" onclick="showTool('word')">Word Counter</button>
-      <button class="nav-pill" onclick="showTool('palette')">Color Palette</button>
-    </div>
+    <h1 class="hero-title">Your Ultimate<br /><span class="gradient-text">Online Toolkit</span></h1>
+    <p class="hero-sub">9 powerful tools — all free, all instant. Pick one to get started.</p>
   </section>
+
+  <!-- TOOL GRID HOME -->
+  <div id="tool-home" class="tool-grid-section">
+    <div class="tools-grid">
+      <button class="tool-box" onclick="showTool('gst')">
+        <span class="tool-box-icon">🧾</span>
+        <span class="tool-box-name">GST Calculator</span>
+        <span class="tool-box-desc">Add or remove GST with CGST/SGST split</span>
+      </button>
+      <button class="tool-box" onclick="showTool('emi')">
+        <span class="tool-box-icon">🏦</span>
+        <span class="tool-box-name">EMI / Loan Calculator</span>
+        <span class="tool-box-desc">Monthly EMI, total interest &amp; payment</span>
+      </button>
+      <button class="tool-box" onclick="showTool('image')">
+        <span class="tool-box-icon">🖼️</span>
+        <span class="tool-box-name">Image Compressor</span>
+        <span class="tool-box-desc">Reduce image size without losing quality</span>
+      </button>
+      <button class="tool-box" onclick="showTool('qr')">
+        <span class="tool-box-icon">📱</span>
+        <span class="tool-box-name">QR Code Generator</span>
+        <span class="tool-box-desc">Create custom QR codes instantly</span>
+      </button>
+      <button class="tool-box" onclick="showTool('converter')">
+        <span class="tool-box-icon">💱</span>
+        <span class="tool-box-name">Currency Converter</span>
+        <span class="tool-box-desc">Convert between world currencies</span>
+      </button>
+      <button class="tool-box" onclick="showTool('bill')">
+        <span class="tool-box-icon">🍽️</span>
+        <span class="tool-box-name">Split the Bill</span>
+        <span class="tool-box-desc">Split bills with tip &amp; discount</span>
+      </button>
+      <button class="tool-box" onclick="showTool('age')">
+        <span class="tool-box-icon">🎂</span>
+        <span class="tool-box-name">Age Calculator</span>
+        <span class="tool-box-desc">Find exact age in years, months &amp; days</span>
+      </button>
+      <button class="tool-box" onclick="showTool('word')">
+        <span class="tool-box-icon">📝</span>
+        <span class="tool-box-name">Word &amp; Character Counter</span>
+        <span class="tool-box-desc">Count words, characters &amp; reading time</span>
+      </button>
+      <button class="tool-box" onclick="showTool('palette')">
+        <span class="tool-box-icon">🎨</span>
+        <span class="tool-box-name">Color Palette Generator</span>
+        <span class="tool-box-desc">Generate beautiful harmonious palettes</span>
+      </button>
+    </div>
+  </div>
 
   <!-- TOOL PANELS -->
   <main class="tool-area">
 
     <!-- GST CALCULATOR -->
-    <div id="tool-gst" class="tool-panel active">
+    <div id="tool-gst" class="tool-panel">
       <div class="tool-card">
         <h2 class="tool-title">🧾 GST Calculator</h2>
         <div class="form-grid">
           <div class="form-group">
             <label>Original Amount (₹)</label>
-            <input type="number" id="gst-amount" placeholder="e.g. 1000" min="0"/>
+            <input type="number" id="gst-amount" placeholder="e.g. 1000" min="0" />
           </div>
           <div class="form-group">
             <label>GST Rate (%)</label>
@@ -65,7 +110,7 @@
           </div>
           <div class="form-group" id="gst-custom-wrapper" style="display:none">
             <label>Custom Rate (%)</label>
-            <input type="number" id="gst-custom" placeholder="Enter rate"/>
+            <input type="number" id="gst-custom" placeholder="Enter rate" />
           </div>
           <div class="form-group">
             <label>Calculation Type</label>
@@ -87,15 +132,15 @@
         <div class="form-grid">
           <div class="form-group">
             <label>Loan Amount (₹)</label>
-            <input type="number" id="emi-principal" placeholder="e.g. 500000" min="0"/>
+            <input type="number" id="emi-principal" placeholder="e.g. 500000" min="0" />
           </div>
           <div class="form-group">
             <label>Annual Interest Rate (%)</label>
-            <input type="number" id="emi-rate" placeholder="e.g. 8.5" step="0.1" min="0"/>
+            <input type="number" id="emi-rate" placeholder="e.g. 8.5" step="0.1" min="0" />
           </div>
           <div class="form-group">
             <label>Loan Tenure (Months)</label>
-            <input type="number" id="emi-months" placeholder="e.g. 60" min="1"/>
+            <input type="number" id="emi-months" placeholder="e.g. 60" min="1" />
           </div>
         </div>
         <button class="calc-btn" onclick="calcEMI()">Calculate EMI</button>
@@ -111,16 +156,23 @@
           <p>📂 Click or drag & drop an image here</p>
           <span class="drop-hint">Supports JPG, PNG, WebP</span>
         </div>
-        <input type="file" id="img-input" accept="image/*" style="display:none" onchange="loadImage(event)"/>
+        <input type="file" id="img-input" accept="image/*" style="display:none" onchange="loadImage(event)" />
         <div class="form-group" style="margin-top:1rem">
           <label>Quality: <span id="quality-val">75</span>%</label>
-          <input type="range" id="img-quality" min="10" max="100" value="75" oninput="document.getElementById('quality-val').textContent=this.value"/>
+          <input type="range" id="img-quality" min="10" max="100" value="75"
+            oninput="document.getElementById('quality-val').textContent=this.value" />
         </div>
         <button class="calc-btn" onclick="compressImage()">Compress Image</button>
         <div id="img-result" class="result-box hidden">
           <div class="img-compare">
-            <div><p>Original</p><img id="img-original" /><p id="img-orig-size"></p></div>
-            <div><p>Compressed</p><img id="img-compressed" /><p id="img-comp-size"></p></div>
+            <div>
+              <p>Original</p><img id="img-original" />
+              <p id="img-orig-size"></p>
+            </div>
+            <div>
+              <p>Compressed</p><img id="img-compressed" />
+              <p id="img-comp-size"></p>
+            </div>
           </div>
           <button class="download-btn" onclick="downloadImage()" id="img-download">⬇ Download Compressed</button>
         </div>
@@ -133,16 +185,16 @@
         <h2 class="tool-title">📱 QR Code Generator</h2>
         <div class="form-group">
           <label>Enter text or URL</label>
-          <input type="text" id="qr-input" placeholder="https://example.com or any text"/>
+          <input type="text" id="qr-input" placeholder="https://example.com or any text" />
         </div>
         <div class="form-grid">
           <div class="form-group">
             <label>Foreground Color</label>
-            <input type="color" id="qr-fg" value="#0f172a"/>
+            <input type="color" id="qr-fg" value="#0f172a" />
           </div>
           <div class="form-group">
             <label>Background Color</label>
-            <input type="color" id="qr-bg" value="#ffffff"/>
+            <input type="color" id="qr-bg" value="#ffffff" />
           </div>
           <div class="form-group">
             <label>Size</label>
@@ -161,37 +213,54 @@
       </div>
     </div>
 
-    <!-- UNIT / CURRENCY CONVERTER -->
+    <!-- CURRENCY CONVERTER -->
     <div id="tool-converter" class="tool-panel">
       <div class="tool-card">
-        <h2 class="tool-title">🔄 Unit / Currency Converter</h2>
-        <div class="form-group">
-          <label>Category</label>
-          <select id="conv-category" onchange="updateUnits()">
-            <option value="length">Length</option>
-            <option value="weight">Weight</option>
-            <option value="temperature">Temperature</option>
-            <option value="area">Area</option>
-            <option value="volume">Volume</option>
-            <option value="speed">Speed</option>
-            <option value="currency">Currency (INR base)</option>
-          </select>
-        </div>
+        <h2 class="tool-title">💱 Currency Converter</h2>
+        <p class="tool-note">Rates are approximate and INR-based. For live rates check your bank.</p>
         <div class="form-grid">
           <div class="form-group">
-            <label>From</label>
-            <select id="conv-from"></select>
+            <label>From Currency</label>
+            <select id="conv-from">
+              <option value="INR">🇮🇳 INR – Indian Rupee</option>
+              <option value="USD">🇺🇸 USD – US Dollar</option>
+              <option value="EUR">🇪🇺 EUR – Euro</option>
+              <option value="GBP">🇬🇧 GBP – British Pound</option>
+              <option value="JPY">🇯🇵 JPY – Japanese Yen</option>
+              <option value="AED">🇦🇪 AED – UAE Dirham</option>
+              <option value="SGD">🇸🇬 SGD – Singapore Dollar</option>
+              <option value="CAD">🇨🇦 CAD – Canadian Dollar</option>
+              <option value="AUD">🇦🇺 AUD – Australian Dollar</option>
+              <option value="CHF">🇨🇭 CHF – Swiss Franc</option>
+              <option value="CNY">🇨🇳 CNY – Chinese Yuan</option>
+              <option value="SAR">🇸🇦 SAR – Saudi Riyal</option>
+              <option value="MYR">🇲🇾 MYR – Malaysian Ringgit</option>
+            </select>
           </div>
           <div class="form-group">
-            <label>To</label>
-            <select id="conv-to"></select>
+            <label>To Currency</label>
+            <select id="conv-to">
+              <option value="INR">🇮🇳 INR – Indian Rupee</option>
+              <option value="USD" selected>🇺🇸 USD – US Dollar</option>
+              <option value="EUR">🇪🇺 EUR – Euro</option>
+              <option value="GBP">🇬🇧 GBP – British Pound</option>
+              <option value="JPY">🇯🇵 JPY – Japanese Yen</option>
+              <option value="AED">🇦🇪 AED – UAE Dirham</option>
+              <option value="SGD">🇸🇬 SGD – Singapore Dollar</option>
+              <option value="CAD">🇨🇦 CAD – Canadian Dollar</option>
+              <option value="AUD">🇦🇺 AUD – Australian Dollar</option>
+              <option value="CHF">🇨🇭 CHF – Swiss Franc</option>
+              <option value="CNY">🇨🇳 CNY – Chinese Yuan</option>
+              <option value="SAR">🇸🇦 SAR – Saudi Riyal</option>
+              <option value="MYR">🇲🇾 MYR – Malaysian Ringgit</option>
+            </select>
           </div>
         </div>
         <div class="form-group">
-          <label>Value</label>
-          <input type="number" id="conv-value" placeholder="Enter value"/>
+          <label>Amount</label>
+          <input type="number" id="conv-value" placeholder="Enter amount" min="0" />
         </div>
-        <button class="calc-btn" onclick="convert()">Convert</button>
+        <button class="calc-btn" onclick="convert()">Convert Currency</button>
         <div id="conv-result" class="result-box hidden"></div>
       </div>
     </div>
@@ -203,19 +272,19 @@
         <div class="form-grid">
           <div class="form-group">
             <label>Total Bill Amount (₹)</label>
-            <input type="number" id="bill-total" placeholder="e.g. 2500" min="0"/>
+            <input type="number" id="bill-total" placeholder="e.g. 2500" min="0" />
           </div>
           <div class="form-group">
             <label>Number of People</label>
-            <input type="number" id="bill-people" placeholder="e.g. 4" min="1"/>
+            <input type="number" id="bill-people" placeholder="e.g. 4" min="1" />
           </div>
           <div class="form-group">
             <label>Tip (%)</label>
-            <input type="number" id="bill-tip" placeholder="e.g. 10" min="0" value="0"/>
+            <input type="number" id="bill-tip" placeholder="e.g. 10" min="0" value="0" />
           </div>
           <div class="form-group">
             <label>Discount (%)</label>
-            <input type="number" id="bill-discount" placeholder="e.g. 5" min="0" value="0"/>
+            <input type="number" id="bill-discount" placeholder="e.g. 5" min="0" value="0" />
           </div>
         </div>
         <button class="calc-btn" onclick="calcBill()">Split Bill</button>
@@ -230,11 +299,11 @@
         <div class="form-grid">
           <div class="form-group">
             <label>Date of Birth</label>
-            <input type="date" id="age-dob"/>
+            <input type="date" id="age-dob" />
           </div>
           <div class="form-group">
             <label>Calculate Age As Of</label>
-            <input type="date" id="age-today"/>
+            <input type="date" id="age-today" />
           </div>
         </div>
         <button class="calc-btn" onclick="calcAge()">Calculate Age</button>
@@ -248,7 +317,8 @@
         <h2 class="tool-title">📝 Word & Character Counter</h2>
         <div class="form-group">
           <label>Paste or type your text below</label>
-          <textarea id="word-input" rows="8" placeholder="Start typing or paste text here..." oninput="countWords()"></textarea>
+          <textarea id="word-input" rows="8" placeholder="Start typing or paste text here..."
+            oninput="countWords()"></textarea>
         </div>
         <div id="word-stats" class="stats-grid">
           <div class="stat-box"><span id="wc-words">0</span><label>Words</label></div>
@@ -258,7 +328,8 @@
           <div class="stat-box"><span id="wc-paras">0</span><label>Paragraphs</label></div>
           <div class="stat-box"><span id="wc-read">0 min</span><label>Read Time</label></div>
         </div>
-        <button class="calc-btn" onclick="document.getElementById('word-input').value='';countWords()">Clear Text</button>
+        <button class="calc-btn" onclick="document.getElementById('word-input').value='';countWords()">Clear
+          Text</button>
       </div>
     </div>
 
@@ -269,7 +340,7 @@
         <div class="form-grid">
           <div class="form-group">
             <label>Base Color</label>
-            <input type="color" id="palette-base" value="#6366f1"/>
+            <input type="color" id="palette-base" value="#6366f1" />
           </div>
           <div class="form-group">
             <label>Palette Type</label>
@@ -307,4 +378,5 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script src="app.js"></script>
 </body>
+
 </html>
